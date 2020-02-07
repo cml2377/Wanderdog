@@ -1,0 +1,25 @@
+{
+  "name": "meanleanfreakgoat",
+  "version": "1.0.0",
+  "description": "Wanderdog Version 2.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cml2377/meanLeanFreakGoat.git"
+  },
+  "keywords": [
+    "Wanderdog",
+    "project",
+    "bootcamp",
+    "api"
+  ],
+  "author": "Crystal Ly, Kimi Inglet, Justin Wofford",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cml2377/meanLeanFreakGoat/issues"
+  },
+  "homepage": "https://github.com/cml2377/meanLeanFreakGoat#readme"
+}

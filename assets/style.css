@@ -39,3 +39,14 @@ https://getuikit.com/docs/introduction
 h1 {
     font-family: 'Raleway', sans-serif;
 }
+
+a, h2 {
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    text-decoration: none;
+}
+
+a:hover {
+    font-family: 'Raleway', sans-serif;
+    text-decoration: none;
+}
