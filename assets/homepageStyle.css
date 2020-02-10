@@ -2,7 +2,11 @@ body{
     background-image: url("../assets/images/georgia-de-lotz-lckTrojViao-unsplash.jpg");
     background-position: center;
     background-size: cover;
-    font-family: 'Raleway';
+    font-family: 'Raleway', sans-serif;
+}
+
+h1, h2, h3 {
+    font-family: 'Raleway', sans-serif;
 }
 
 .uk-container-expand{
