@@ -3,3 +3,7 @@ body{
     background-position: center;
     background-size: cover;
 }
+
+.uk-overlay{
+    background-color: rgba(33,33,33,0.8);
+}
