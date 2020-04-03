@@ -1,6 +1,6 @@
-# Project meanLeanFreakGoat's Off Leash Location Finder, AKA Wanderdog!
+# Project Wanderdog
 
-This application draws from public information to obtain free trails, camp grounds, and parks for your 4-legged pooch! Also provides weather data for your location!
+This application draws from public information to obtain free trails, camp grounds, and parks for your 4-legged pooch!
 
 ## Getting Started
 
@@ -24,14 +24,11 @@ Please keep in mind:
 ## Built With
 
 * [Google Maps](https://www.google.com/maps) - We draw from Google's API to grab locations and map area.
-* [Weather](https://openweathermap.org/) - We draw from Open Weather Map to grab current and future weather of the location you select.
-* [Weather Icons](https://github.com/erikflowers/weather-icons/) - We used Erik Flowers' beautiful weather icons.
 * [USA Data](https://www.data.gov/) - We used US Federal govt. open data to pull public land locations.
-* [Bulma](https://bulma.io/documentation/) - We used Bulma CSS framework. 
+* [UIKit](https://getuikit.com/) - We used UIKit's CSS framework. 
 * [Unsplash](https://unsplash.com/t/animals) - We used copyright-free images from this site.
 * [FontAwesome](https://fontawesome.com/) - We used the dog icon.
 * [Google Fonts](https://fonts.google.com/) - We used 1 font style from Google Fonts.
-* [Moment](https://momentjs.com/) - We used Moment to grab current date and forecast dates.
 * [Hiking](https://www.hikingproject.com/data) - We used Hiking Project's API to grab trails based on geolocation.
 
 ## Contributing
