@@ -51,6 +51,40 @@
                 }, function () {
                     handleLocationError(true, infoWindow, map.getCenter());
                 });
+                // Add hiking sites based on location
+                $.ajax({
+                    url: redirectHelpHiking + "www.hikingproject.com/data/get-trails?lat=" + crd.latitude + "&lon=" + crd.longitude + "&key=" + hikingProjectAPIKey,
+                    method: "GET"
+                }).then(function (response) {
+                    //Log the resulting object
+                    console.log(response);
+
+                    //==================================================
+                    // Add the names and urls for the first 5 trails
+                    //==================================================
+                    hikingSites1.innerHTML = response.trails[0].name;
+                    hikingSites1.href = response.trails[0].url;
+
+                    hikingSites2.innerHTML = response.trails[1].name;
+                    hikingSites2.href = response.trails[1].url;
+
+                    hikingSites3.innerHTML = response.trails[2].name;
+                    hikingSites3.href = response.trails[2].url;
+
+                    hikingSites4.innerHTML = response.trails[3].name;
+                    hikingSites4.href = response.trails[3].url;
+
+                    hikingSites5.innerHTML = response.trails[4].name;
+                    hikingSites5.href = response.trails[4].url;
+                    //======================================================================
+                    // Add a description for each of these trails under the name and link
+                    //======================================================================
+                    hikingDescription1.innerHTML = response.trails[0].summary;
+                    hikingDescription2.innerHTML = response.trails[1].summary;
+                    hikingDescription3.innerHTML = response.trails[2].summary;
+                    hikingDescription4.innerHTML = response.trails[3].summary;
+                    hikingDescription5.innerHTML = response.trails[4].summary;
+                });
             } else {
                 // Browser doesn't support Geolocation
                 handleLocationError(false, infoWindow, map.getCenter());
@@ -78,13 +112,14 @@
         <div>
             Wanderdog allows you to find public-owned land where you can camp and hike with your dog. We have focused on
             areas that allow dogs off-leash. Please keep in mind:
-            <p>Unique Rules regarding <a target="_blank"
-                    href="https://wilderness.net/learn-about-wilderness/default.php">
-                    Wilderness Areas</a> | Common <a target="_blank"
-                    href="https://www.blm.gov/programs/recreation/hiking">
-                    Hiking Etiquette & Safety</a> Practices</p>
+            <p class="uk-text-center uk-heading-line"><span>Unique Rules regarding <a target="_blank"
+                        href="https://wilderness.net/learn-about-wilderness/default.php">
+                        Wilderness Areas</a> | Common <a target="_blank"
+                        href="https://www.blm.gov/programs/recreation/hiking">
+                        Hiking Etiquette & Safety</a> Practices</span></p>
 
-            <p>Don't forget LED collars or reflective vests for low-light situations!</p>
+            <p class="uk-text-center">Don't forget LED collars or reflective vests for low-light situations!</p>
+            <hr>
         </div>
 
         <div id="contentBox" class="uk-child-width-expand@s" uk-grid>
@@ -113,14 +148,30 @@
             <div>
                 <h3>Trails</h3>
                 <dl class="uk-description-list uk-description-list-divider">
-                    <dt>Description term</dt>
-                    <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</dd>
-                    <dt>Description term</dt>
-                    <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua.</dd>
-                    <dt>Description term</dt>
-                    <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua.</dd>
+                    <a target="_blank">
+                        <dt class="hikingLink" id="hikingSites1"></dt>
+                    </a>
+                    <dd id="hikingDescription1"></dd>
+
+                    <a target="_blank">
+                        <dt class="hikingLink" id="hikingSites2"></dt>
+                    </a>
+                    <dd id="hikingDescription2"></dd>
+
+                    <a target="_blank">
+                        <dt class="hikingLink" id="hikingSites3"></dt>
+                    </a>
+                    <dd id="hikingDescription3"></dd>
+
+                    <a target="_blank">
+                        <dt class="hikingLink" id="hikingSites4"></dt>
+                    </a>
+                    <dd id="hikingDescription4"></dd>
+
+                    <a target="_blank">
+                        <dt class="hikingLink" id="hikingSites5"></dt>
+                    </a>
+                    <dd id="hikingDescription5"></dd>
                 </dl>
             </div>
         </div>
@@ -151,7 +202,7 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjORy8G0xS2QjrlQ7uJZWr1mabDPtAMCA&callback=initMap"></script>
     <script type="text/javascript" src="scripts/tinyBtnAPI.js" defer></script>
     <script type="text/javascript" src="scripts/recreationAPI.js" defer></script>
-    <script type="text/javascript" src="scripts/script.js"></script>
+    <script type="text/javascript" src="scripts/index.js.js"></script>
     <script type="text/javascript" src="scripts/hikingAPI.js"></script>
 </body>
 

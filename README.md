@@ -19,6 +19,8 @@ Please keep in mind:
  * [Outdoor Ethics](https://lnt.org/) and to 
  * [Tread Lightly!](https://www.treadlightly.org/)
 
+ <img src="./assets/images/wanderdogV2-WIP.png" width="100%">
+
 ## Built With
 
 * [Google Maps](https://www.google.com/maps) - We draw from Google's API to grab locations and map area.
@@ -45,7 +47,7 @@ Thanks to Isreal Medina, Brittany Taylor, and Eric Scott for teaching and guidin
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
 ## Acknowledgments
 
