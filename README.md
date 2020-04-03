@@ -4,7 +4,8 @@ This application draws from public information to obtain free trails, camp groun
 
 ## Getting Started
 
-* [Click Here!](https://wanderdog.herokuapp.com/)
+* [Click here for Original Wanderdog](https://kimiinglet.github.io/meanLeanFreakGoat/)
+* [Click here for Wanderdog V2](https://cml2377.github.io/Wanderdog/)
 
 These instructions will help you locate the perfect spot to spend time with your pups.
 
