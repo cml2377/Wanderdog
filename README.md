@@ -39,9 +39,9 @@ Thanks to Isreal Medina, Brittany Taylor, and Eric Scott for teaching and guidin
 
 ## Authors
 
-* [Kimi Inglet](https://github.com/kimiinglet)
-* [Crystal Ly](https://github.com/cml2377)
-* [Justin Wofford](https://github.com/JayDub21)
+* [Kimi Inglet](https://github.com/kimiinglet) V1
+* [Crystal Ly](https://github.com/cml2377) V1 and V2
+* [Justin Wofford](https://github.com/JayDub21) V1
 
 ## License
 
