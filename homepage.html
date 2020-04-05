@@ -52,16 +52,16 @@
                     handleLocationError(true, infoWindow, map.getCenter());
                 });
                 var redirectHelp = "https://cors-ut-bootcamp.herokuapp.com/";
-                // Add hiking sites based on location
+                // Add trails based on location
                 $.ajax({
-                    url: redirectHelpHiking + "www.hikingproject.com/data/get-trails?lat=" + crd.latitude + "&lon=" + crd.longitude + "&key=" + hikingProjectAPIKey,
+                    url: redirectHelp + "www.hikingproject.com/data/get-trails?lat=" + crd.latitude + "&lon=" + crd.longitude + "&key=" + hikingProjectAPIKey,
                     method: "GET"
                 }).then(function (response) {
                     //Log the resulting object
                     console.log(response);
 
                     //==================================================
-                    // Add the names and urls for the first 10 trails
+                    // Add the names and urls for the first 5 trails
                     //==================================================
                     hikingSites1.innerHTML = response.trails[0].name;
                     hikingSites1.href = response.trails[0].url;
@@ -78,20 +78,6 @@
                     hikingSites5.innerHTML = response.trails[4].name;
                     hikingSites5.href = response.trails[4].url;
 
-                    hikingSites6.innerHTML = response.trails[5].name;
-                    hikingSites6.href = response.trails[5].url;
-
-                    hikingSites7.innerHTML = response.trails[6].name;
-                    hikingSites7.href = response.trails[6].url;
-
-                    hikingSites8.innerHTML = response.trails[7].name;
-                    hikingSites8.href = response.trails[7].url;
-
-                    hikingSites9.innerHTML = response.trails[8].name;
-                    hikingSites9.href = response.trails[8].url;
-
-                    hikingSites10.innerHTML = response.trails[9].name;
-                    hikingSites10.href = response.trails[9].url;
                     //======================================================================
                     // Add a description for each of these trails under the name and link
                     //======================================================================
@@ -100,143 +86,29 @@
                     hikingDescription3.innerHTML = response.trails[2].summary;
                     hikingDescription4.innerHTML = response.trails[3].summary;
                     hikingDescription5.innerHTML = response.trails[4].summary;
-                    hikingDescription6.innerHTML = response.trails[5].summary;
-                    hikingDescription7.innerHTML = response.trails[6].summary;
-                    hikingDescription8.innerHTML = response.trails[7].summary;
-                    hikingDescription9.innerHTML = response.trails[8].summary;
-                    hikingDescription10.innerHTML = response.trails[9].summary;
                 });
-
-                // Finds campsites/facilities
-                var queryURL = redirectHelp + "ridb.recreation.gov/api/v1/facilities?limit=50";
-
-                cSites.innerHTML = "Loading...";
-                cSites.href = "";
-                //===================================================
-                // Sends ajax request for Facilities (based on location?)
-                //===================================================
                 $.ajax({
-                    url: queryURL,
+                    url: redirectHelp + "http://api.amp.active.com/camping/campgrounds/?amenity=4006&pets=3010&landmarkLat=" + crd.latitude + "&landmarkLong=" + crd.longitude + "&api_key=" + apikey,
                     headers: {
-                        apikey: "5dc5ca61-c304-482b-bc02-1fcb1007f0b2"
+                        apikey: "ue26qnj3mtgav8yn2qnmwxgr"
                     },
                     method: "GET"
                 }).then(function (response) {
-
-                    var recData = response.RECDATA;
-                    var facilityPetsAllowed = false;
-
-                    function processNextFacility() {
-                        if (recData.length < 1) {
-                            if (!facilityPetsAllowed) {
-                                cSites.innerHTML = "No dog-friendly campgrounds found.";
-                                cSites.href = "";
-                            }
-                            return; //breaks out of function if i exceeds length of facilities listed
-                        }
-                        // //===================================================
-                        // // Randomly Select One of the Facilities from Array
-                        // //===================================================
-                        let randomIndex = Math.floor(Math.random() * recData.length);
-                        let currentFacility = recData[randomIndex];
-
-                        //=================================================================
-                        // Remove selected facility from the list so it isn't chosen again
-                        // and we know when to stop.
-                        //=================================================================
-                        recData.splice(randomIndex, 1);
-
-                        let facID = currentFacility.FacilityID;
-
-                        //==================================================================
-                        // Create var to Display Facilty Name In HTML Link Box
-                        //==================================================================
-
-                        let facName = currentFacility.FacilityName;
-
-                        //==============================================================
-                        // Uses Facility ID # to query for all campsites within Facility
-                        //==============================================================
-                        $.ajax({
-                            url: redirectHelp + "ridb.recreation.gov/api/v1/facilities/" + facID + "/campsites?limit=5&offset=0",
-                            headers: {
-                                apikey: "5dc5ca61-c304-482b-bc02-1fcb1007f0b2"
-                            },
-                            method: "GET"
-                        }).then(function (response) {
-
-                            //==================================================
-                            // If No Campgrounds, omit Facility 
-                            //==================================================
-                            if (response.RECDATA.length >= 1) {
-                                // console.log(response.RECDATA);
-                                var campGrounds = response.RECDATA;
-                                if (!campGrounds) {
-                                    processNextFacility();
-                                }
-
-
-                                //===================================================
-                                //  Loop thru results and grab Campground Attributes
-                                //===================================================
-
-                                for (var i = 0; i < campGrounds.length; i++) {
-                                    console.log(campGrounds[i].ATTRIBUTES);
-                                    console.log("CHECK");
-
-
-                                    //=============================================================================
-                                    //  Keep Campgrounds where Pets Allowed is an Attribute AND the value is True
-                                    //=============================================================================
-                                    if (campGrounds[i].ATTRIBUTES) {
-                                        var attributes = campGrounds[i].ATTRIBUTES;
-                                        var petsAllowed = false;
-                                        for (var j = 0; j < attributes.length; j++) {
-                                            if (attributes[j].AttributeName === "Pets Allowed" && attributes[j].AttributeValue === "Yes") {
-                                                petsAllowed = true;
-                                                facilityPetsAllowed = true;
-
-                                                //===================================================
-                                                // If Pets are allowed, put into Ptag ID
-                                                //===================================================
-                                                cSites.innerHTML = (facName);
-                                                var cSiteName = $("#cSites").text();
-                                                cSites.href = "https://www.google.com/search?q=" + cSiteName;
-                                                break;
-                                            }
-                                        }
-                                        if (petsAllowed) {
-                                            break;
-                                        }
-                                    }
-                                }
-                                if (facilityPetsAllowed == false) {
-                                    processNextFacility();
-                                }
-                            }
-                            //=================================================
-                            //Else statement if facility has no campgrounds
-                            //=================================================
-                            else {
-                                processNextFacility();
-                            }
-                        });
-                    }
-                    processNextFacility();
-                })
+                    // return campgrounds that are dog-friendly
+                    console.log(response);
+                });
             } else {
                 // Browser doesn't support Geolocation
                 handleLocationError(false, infoWindow, map.getCenter());
             }
-        }
 
-        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-            infoWindow.setPosition(pos);
-            infoWindow.setContent(browserHasGeolocation ?
-                'Error: The Geolocation service failed.' :
-                'Error: Your browser doesn\'t support geolocation.');
-            infoWindow.open(map);
-        }
+            function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+                infoWindow.setPosition(pos);
+                infoWindow.setContent(browserHasGeolocation ?
+                    'Error: The Geolocation service failed.' :
+                    'Error: Your browser doesn\'t support geolocation.');
+                infoWindow.open(map);
+            }
     </script>
 </head>
 
@@ -284,52 +156,26 @@
                         <dt class="hikingLink"></dt>
                     </a>
                     <dd id="hikingDescription1"></dd>
-
+                    <hr>
                     <a target="_blank" id="hikingSites2">
                         <dt class="hikingLink"></dt>
                     </a>
                     <dd id="hikingDescription2"></dd>
-
+                    <hr>
                     <a target="_blank" id="hikingSites3">
                         <dt class="hikingLink"></dt>
                     </a>
                     <dd id="hikingDescription3"></dd>
-
+                    <hr>
                     <a target="_blank" id="hikingSites4">
                         <dt class="hikingLink"></dt>
                     </a>
                     <dd id="hikingDescription4"></dd>
-
+                    <hr>
                     <a target="_blank" id="hikingSites5">
                         <dt class="hikingLink"></dt>
                     </a>
                     <dd id="hikingDescription5"></dd>
-
-                    <a target="_blank" id="hikingSites6">
-                        <dt class="hikingLink"></dt>
-                    </a>
-                    <dd id="hikingDescription6"></dd>
-
-                    <a target="_blank" id="hikingSites7">
-                        <dt class="hikingLink"></dt>
-                    </a>
-                    <dd id="hikingDescription7"></dd>
-
-                    <a target="_blank" id="hikingSites8">
-                        <dt class="hikingLink"></dt>
-                    </a>
-                    <dd id="hikingDescription8"></dd>
-
-                    <a target="_blank" id="hikingSites9">
-                        <dt class="hikingLink"></dt>
-                    </a>
-                    <dd id="hikingDescription9"></dd>
-
-                    <a target="_blank" id="hikingSites10">
-                        <dt class="hikingLink"></dt>
-                    </a>
-                    <dd id="hikingDescription10"></dd>
-
                 </dl>
             </div>
         </div>
