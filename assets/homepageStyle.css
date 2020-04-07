@@ -16,6 +16,7 @@ h1, h2, h3 {
 
 #map {
     height: 100%;
+    min-height: 400px;
   }
 
 .footer {
@@ -24,4 +25,10 @@ h1, h2, h3 {
 
 #contentBox {
     margin-bottom: 8%;
+}
+
+@media only screen and (max-width: 640px){
+   #campsitesDiv{
+    margin-top: 40px;
+    } 
 }

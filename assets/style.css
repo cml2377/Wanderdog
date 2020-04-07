@@ -9,15 +9,6 @@ https://getuikit.com/docs/introduction
 
 /* CSS DIRECTORY
 	1. =GLOBAL SETTINGS
-	2. =MODALS
-	3. =HERO!
-	4. =USA STATES BOX
-    5. =LINKS BOX
-    6. =SEARCH BOX
-    7. =CAMP/HIKING BOX
-    8. =WEATHER BOX
-    9. =FOOTER
-    10. =MEDIA QUERIES
 */
 
 /* COLORS
@@ -30,7 +21,7 @@ https://getuikit.com/docs/introduction
 	font-family: 'Raleway', sans-serif;
 */
 
-/*=====================================///=======================================*/
+/*=============================*/
 
 /* ==================
     =GLOBAL SETTINGS 
@@ -44,6 +35,7 @@ a, h2 {
     font-family: 'Raleway', sans-serif;
     text-align: center;
     text-decoration: none;
+    font-weight: 200;
 }
 
 a:hover {
