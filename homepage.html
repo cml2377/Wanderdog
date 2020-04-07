@@ -23,94 +23,6 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
     <!-- In-house CSS -->
     <link rel="stylesheet" href="assets/homepageStyle.css">
-    <script>
-        // Note: This example requires that you consent to location sharing when
-        // prompted by your browser. If you see the error "The Geolocation service
-        // failed.", it means you probably did not give permission for the browser to
-        // locate you.
-        var map, infoWindow;
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: -34.397, lng: 150.644 },
-                zoom: 8
-            });
-            infoWindow = new google.maps.InfoWindow;
-
-            // Try HTML5 geolocation.
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function (position) {
-                    var pos = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    };
-
-                    infoWindow.setPosition(pos);
-                    infoWindow.setContent('Location found.');
-                    infoWindow.open(map);
-                    map.setCenter(pos);
-                }, function () {
-                    handleLocationError(true, infoWindow, map.getCenter());
-                });
-                var redirectHelp = "https://cors-ut-bootcamp.herokuapp.com/";
-                // Add trails based on location
-                $.ajax({
-                    url: redirectHelp + "www.hikingproject.com/data/get-trails?lat=" + crd.latitude + "&lon=" + crd.longitude + "&key=" + hikingProjectAPIKey,
-                    method: "GET"
-                }).then(function (response) {
-                    //Log the resulting object
-                    console.log(response);
-
-                    //==================================================
-                    // Add the names and urls for the first 5 trails
-                    //==================================================
-                    hikingSites1.innerHTML = response.trails[0].name;
-                    hikingSites1.href = response.trails[0].url;
-
-                    hikingSites2.innerHTML = response.trails[1].name;
-                    hikingSites2.href = response.trails[1].url;
-
-                    hikingSites3.innerHTML = response.trails[2].name;
-                    hikingSites3.href = response.trails[2].url;
-
-                    hikingSites4.innerHTML = response.trails[3].name;
-                    hikingSites4.href = response.trails[3].url;
-
-                    hikingSites5.innerHTML = response.trails[4].name;
-                    hikingSites5.href = response.trails[4].url;
-
-                    //======================================================================
-                    // Add a description for each of these trails under the name and link
-                    //======================================================================
-                    hikingDescription1.innerHTML = response.trails[0].summary;
-                    hikingDescription2.innerHTML = response.trails[1].summary;
-                    hikingDescription3.innerHTML = response.trails[2].summary;
-                    hikingDescription4.innerHTML = response.trails[3].summary;
-                    hikingDescription5.innerHTML = response.trails[4].summary;
-                });
-                $.ajax({
-                    url: redirectHelp + "http://api.amp.active.com/camping/campgrounds/?amenity=4006&pets=3010&landmarkLat=" + crd.latitude + "&landmarkLong=" + crd.longitude + "&api_key=" + apikey,
-                    headers: {
-                        apikey: "ue26qnj3mtgav8yn2qnmwxgr"
-                    },
-                    method: "GET"
-                }).then(function (response) {
-                    // return campgrounds that are dog-friendly
-                    console.log(response);
-                });
-            } else {
-                // Browser doesn't support Geolocation
-                handleLocationError(false, infoWindow, map.getCenter());
-            }
-
-            function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-                infoWindow.setPosition(pos);
-                infoWindow.setContent(browserHasGeolocation ?
-                    'Error: The Geolocation service failed.' :
-                    'Error: Your browser doesn\'t support geolocation.');
-                infoWindow.open(map);
-            }
-        }
-    </script>
 </head>
 
 <body
@@ -147,7 +59,30 @@
                 <div id="campsitesDiv">
                     <h3>Campsites</h3>
                     <dl class="uk-description-list uk-description-list-divider">
-                        <dt><a target="_blank" id="cSites"></a></dt>
+                        <a target="_blank" id="campSites1">
+                            <dt class="campLink"></dt>
+                        </a>
+                        <dd id="campDescription1"></dd>
+                        <hr>
+                        <a target="_blank" id="campSites2">
+                            <dt class="campLink"></dt>
+                        </a>
+                        <dd id="campDescription2"></dd>
+                        <hr>
+                        <a target="_blank" id="campSites3">
+                            <dt class="campLink"></dt>
+                        </a>
+                        <dd id="campDescription3"></dd>
+                        <hr>
+                        <a target="_blank" id="campSites4">
+                            <dt class="campLink"></dt>
+                        </a>
+                        <dd id="campDescription4"></dd>
+                        <hr>
+                        <a target="_blank" id="campSites5">
+                            <dt class="campLink"></dt>
+                        </a>
+                        <dd id="campDescription5"></dd>
                     </dl>
                 </div>
             </div>
@@ -201,13 +136,11 @@
     <!----------------------------------------------------------------------------------------------------------->
     <!--Scripts-->
     <!----------------------------------------------------------------------------------------------------------->
-    <script type="text/javascript" src="scripts/moment.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="scripts/googleMapAPI.js"></script>
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjORy8G0xS2QjrlQ7uJZWr1mabDPtAMCA&callback=initMap"></script>
-    <script type="text/javascript" src="scripts/recreationAPI.js" defer></script>
-    <script type="text/javascript" src="scripts/index.js.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
     <script type="text/javascript" src="scripts/hikingAPI.js"></script>
 </body>
 
