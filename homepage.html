@@ -25,7 +25,6 @@
     <link rel="stylesheet" href="assets/homepageStyle.css">
     <script>
         // Soooooo I suppose you need function initMap here instead of in the index.js
-
         var map, infoWindow;
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
@@ -49,17 +48,29 @@
                 }, function () {
                     handleLocationError(true, infoWindow, map.getCenter());
                 });
+                var redirectHelp = "https://cors-ut-bootcamp.herokuapp.com/";
+
+                $.ajax({
+                    url: redirectHelp + "http://api.amp.active.com/camping/campgrounds/?amenity=4006&pets=3010&landmarkLat=" + crd.latitude + "&landmarkLong=" + crd.longitude + "&api_key=" + apikey,
+                    headers: {
+                        apikey: "ue26qnj3mtgav8yn2qnmwxgr"
+                    },
+                    method: "GET"
+                }).then(function (response) {
+                    // return campgrounds that are dog-friendly
+                    console.log(response);
+                });
             } else {
                 // Browser doesn't support Geolocation
                 handleLocationError(false, infoWindow, map.getCenter());
+            }
 
-                function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-                    infoWindow.setPosition(pos);
-                    infoWindow.setContent(browserHasGeolocation ?
-                        'Error: The Geolocation service failed.' :
-                        'Error: Your browser doesn\'t support geolocation.');
-                    infoWindow.open(map);
-                }
+            function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+                infoWindow.setPosition(pos);
+                infoWindow.setContent(browserHasGeolocation ?
+                    'Error: The Geolocation service failed.' :
+                    'Error: Your browser doesn\'t support geolocation.');
+                infoWindow.open(map);
             }
         }
     </script>
