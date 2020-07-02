@@ -49,5 +49,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
+* Camping Icon on Google Maps made by <a href="https://www.flaticon.com/authors/dinosoftlabs" title="DinosoftLabs">DinosoftLabs</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+* Trail Icon on Google Maps made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 * Hat tip to anyone whose code was used
 * Thanks to our dogs, Kimber, Koda, Nox, Orion, and Piper. Thank you for being our best friends.

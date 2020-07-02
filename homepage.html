@@ -33,6 +33,12 @@
             });
             infoWindow = new google.maps.InfoWindow;
 
+            // Marker Icons; Trail and Campsite Icons
+            var icons = {
+                trail: { icon: './assets/images/hiking.png' },
+                campsite: { icon: './assets/images/fire.png' }
+            };
+
             // Try HTML5 geolocation.
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
